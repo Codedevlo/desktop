@@ -6,6 +6,7 @@ import { IRemote } from './remote'
 import { RetryAction } from './retry-actions'
 import { WorkingDirectoryFileChange } from './status'
 import { PreferencesTab } from './preferences'
+import { ICommitContext } from './commit'
 
 export enum PopupType {
   RenameBranch = 1,
@@ -39,6 +40,7 @@ export enum PopupType {
   MergeConflicts,
   AbortMerge,
   UsageReportingChanges,
+  CommitConflictsWarning,
 }
 
 export type Popup =
@@ -135,3 +137,8 @@ export type Popup =
       theirBranch?: string
     }
   | { type: PopupType.UsageReportingChanges }
+  | {
+      type: PopupType.CommitConflictsWarning
+      repository: Repository
+      context: ICommitContext
+    }
